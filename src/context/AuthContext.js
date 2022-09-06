@@ -9,7 +9,7 @@ const AuthContext = createContext();
 
 export const StateContext = ({ children }) => {
     const navigate = useNavigate();
-    const [currentUser, setcurrentUser] = useState([]);
+    const [currentUser, setcurrentUser] = useState({rol:'guess'});
     const [isLoading, setisLoading] = useState(false);
     const [isAlertOpen, setisAlertOpen] = useState(false);
     const [alertMessage, setalertMessage] = useState('');
@@ -271,7 +271,7 @@ export const StateContext = ({ children }) => {
                 });
 
             }else{
-                setcurrentUser(user);
+                setcurrentUser({rol: 'guess'});
             }
 
             
