@@ -104,7 +104,11 @@ const RenderSidebar = () => {
   const handleEventAdd = async (clickInfo) => {
     //console.log(clickInfo.event.start.toISOString().replace(/.000Z.*$/, ''));
     const userId = currentUser.uid
-    if(userId === undefined) return;
+    
+    if(userId === undefined) {
+      alert("Debes iniciar sessión para que tu evente quede registrado.")
+      return;
+    }
     const newEvent = {
         title: clickInfo.event.title,
         start: clickInfo.event.start.toISOString().replace(/.000Z.*$/, ''),

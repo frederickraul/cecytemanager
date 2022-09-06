@@ -28,8 +28,17 @@ const UserCardNew = ({ item: { data }, item, index, handeModalOpen, setdata, set
     case 'god':
       rolName = 'Programador';
       break;
-    case 'admin':
-      rolName = 'Administrador';
+    case 'administrativo':
+      rolName = 'Administrativo';
+      break;
+    case 'coordinador':
+      rolName = 'Coordinador';
+      break;
+    case 'subdirector':
+      rolName = 'Subdirector';
+      break;
+    case 'profesor':
+      rolName = 'Profesor';
       break;
     default:
       rolName = 'Usuario';

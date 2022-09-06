@@ -23,25 +23,23 @@ var nowFormatted = moment(now).format('DD MMMM YYYY');
 var createdAt = moment(now).format('YYYY-MM-DD');
 
 
-
-
-
 const TodoList = () => {
   const [isUpdate, setisUpdate] = useState(false);
   const [categories, setcategories] = useState([]);
   const [isDialogOpen, setisDialogOpen] = useState(false);
   const [index, setindex] = useState();
 
-  const [data, setdata] = useState({status: 'pendiente'});
+  const [data, setdata] = useState({status: 'pending'});
   const [todos, setTodos] = useState([]);
+  const [oldStatus, setoldStatus] = useState('');
   const [modalTitle, setmodalTitle] = useState('Registrar')
   const [isModalOpen, setisModalOpen] = useState(false);
-
+  const [dragElementId, setdragElementId] = useState();
 
   const [images, setImages] = useState([]);
   const maxNumber = 1;
 
-  const { getData,saveData,setisLoading,updateData} = useAuth();
+  const { getData,saveData,setisLoading,updateData,isGod} = useAuth();
 
   const [compressedPhoto, setcompressedPhoto] = useState('');
 
@@ -169,8 +167,43 @@ const handleDialogToggle = () => {
   setisDialogOpen(!isDialogOpen);
 }
 
+const handleDragStart=(e,id,item)=>{
+  setdragElementId(id);
+  setdata(item.data);
+  setoldStatus(item.data.status);
+  setindex(id);
+}
 
+const handleOnDrop = (e,status) =>{
+  if(!isGod){return}
 
+  if(oldStatus === status){
+    return;
+  }
+  confirmChangeStatus(status);
+}
+
+const handleOnDragOver = (e,status) =>{
+  e.preventDefault();
+  setdata(prevData => ({ ...prevData, ['status']: status }));
+}
+
+const confirmChangeStatus = (status) =>{
+  
+   let statusName = 'Pendiente';
+    switch(status){
+      case 'wip':
+        statusName = 'En progreso';
+        break;
+      case 'completed':
+        statusName = 'Completado';
+        break;
+    }
+
+    if (window.confirm(`La tarea cambiara su estado a '${statusName}'`)) {
+      handleUpdate();
+    }
+}
   return(
     <div> 
     <div className='products-heading'>
@@ -188,49 +221,56 @@ const handleDialogToggle = () => {
           </Fab>
       </div>
     <TodoContainer>
-     <TodoColumn>
+     <TodoColumn onDrop={(e)=>{handleOnDrop(e,'pending')}} onDragOver={(e)=>{handleOnDragOver(e,'pending')}}>
       <TodoH3>Pendientes </TodoH3>
       <Line color='#FF4455'/>
-     {todos?.map((item,index) => 
+     {todos?.filter(item => item.data.status === 'pending').map((item,index) => 
           <TodoCard 
               key={item.id} 
               item={item} 
               index={index} 
-              draggable
-              handeModalOpen={() => handleUpdateClick(item.data,item.id)}
+              onDragStart={(e)=>{handleDragStart(e,item.id, item)}}
+              //handeModalOpen={() => handleUpdateClick(item.data,item.id)}
               handleInputChange={handleInputChange}
               handleDelete={handleOpenAlert}              
               setdata={setdata} />
         )}
       </TodoColumn>  
-      <TodoColumn>
+      <TodoColumn onDrop={(e)=>{handleOnDrop(e,'wip')}} onDragOver={(e)=>{handleOnDragOver(e,'wip')}}>
       <TodoH3>En progreso </TodoH3>
       <Line color='#e2cb76'/>
+      {todos?.filter(item => item.data.status === 'wip').map((item,index) => 
+          <TodoCard 
+              key={item.id} 
+              item={item} 
+              index={index} 
+              onDragStart={(e)=>{handleDragStart(e,item.id,item)}}
+             // handeModalOpen={() => handleUpdateClick(item.data,item.id)}
+              handleInputChange={handleInputChange}
+              handleDelete={handleOpenAlert}              
+              setdata={setdata} />
+        )}
         </TodoColumn>   
-        <TodoColumn>
+      
+        <TodoColumn onDrop={(e)=>{handleOnDrop(e,'completed')}} onDragOver={(e)=>{handleOnDragOver(e,'completed')}}>
         <TodoH3>Completados </TodoH3>
       <Line color='#a6c67e'/>
+      {todos?.filter(item => item.data.status === 'completed').map((item,index) => 
+          <TodoCard 
+              key={item.id} 
+              item={item} 
+              index={index} 
+              onDragStart={(e)=>{handleDragStart(e,item.id,item)}}
+              //handeModalOpen={() => handleUpdateClick(item.data,item.id)}
+              handleInputChange={handleInputChange}
+              handleDelete={handleOpenAlert}              
+              setdata={setdata} />
+        )}
         </TodoColumn>   
      
     </TodoContainer>
 
-    <TodoModal
-       title={modalTitle}
-       open={isModalOpen}
-       onClose={handleModalClose}
-       data={data}
-       categories={categories}
-       status={status}
-       handleInputChange={handleInputChange}
-       handleSelectChange={handleSelectChange}
-       onChangeImage={onChangeImage}
-       onCreateItem={handleSave}
-       onUpdateItem={handleUpdate}
-       setImages={setImages}
-       maxNumber={maxNumber}
-       images={images}
-       isUpdate={isUpdate}
-    />
+
     
     <AlertDialog 
         color={theme.danger}
@@ -239,7 +279,7 @@ const handleDialogToggle = () => {
         action={handleDelete}
         handleClose={handleDialogToggle}
         //title={'Eliminar usuario'}
-        message={'Estas a punto de eliminar la categoría. ¿Estas seguro?'}
+        message={'Eliminar tarea. ¿Estas seguro?'}
         />
 
   </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TodoCardContainer, TodoTime } from './styles'
 
-const TodoCard = ({ item: {data},item,index, handeModalOpen,handleDelete}) => {
+const TodoCard = ({ item: {data},item,index, handeModalOpen,handleDelete,onDragStart}) => {
     const {priority,desc,category,createdAt} = data;
     let color = '#444444';
     switch (priority){
@@ -19,7 +19,7 @@ const TodoCard = ({ item: {data},item,index, handeModalOpen,handleDelete}) => {
     }
 
   return (
-    <TodoCardContainer color={color} onClick={handeModalOpen}>
+    <TodoCardContainer color={color} onClick={handeModalOpen} draggable onDragStart={onDragStart}>
         <TodoTime><i>{createdAt}</i></TodoTime>
         <b>{category}</b>
        <p> {desc}</p>
