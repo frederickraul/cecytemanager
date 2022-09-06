@@ -196,6 +196,7 @@ const handleDialogToggle = () => {
               key={item.id} 
               item={item} 
               index={index} 
+              draggable
               handeModalOpen={() => handleUpdateClick(item.data,item.id)}
               handleInputChange={handleInputChange}
               handleDelete={handleOpenAlert}              

@@ -19,7 +19,7 @@ const Navbar = () => {
         </p>
         <div>
         {
-            currentUser ? 
+            currentUser.rol !== 'guess' ? 
             <Link to='/perfil'>
             <Button>
             <NavProfileContent>
