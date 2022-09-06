@@ -31,6 +31,7 @@ const TodoList = () => {
 
   const [data, setdata] = useState({status: 'pending'});
   const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState({status: 'pending'});
   const [oldStatus, setoldStatus] = useState('');
   const [modalTitle, setmodalTitle] = useState('Registrar')
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -107,14 +108,13 @@ const TodoList = () => {
   }
 
   const handleUpdate = () => {
-    updateData('todos',data,index);
-    getTodos();
-    handleModalClose();
+    updateData('todos',data,dragElementId);
+   // handleModalClose();
 }
 
   const handleDelete = async() =>{
     setisLoading(true)
-    await deleteDoc(doc(storage,'todos',index));
+    await deleteDoc(doc(storage,'todos',dragElementId));
     getTodos();
     setisLoading(false);
     setisDialogOpen(false);
@@ -144,7 +144,7 @@ const handleModalClose = () => {
 const handleRegisterClick = () => {
   handleModalOpen();
   setisUpdate(false);
-  setdata({status: 'pendiente',createdAt: createdAt});
+  setdata({status: 'pending',createdAt: createdAt});
   setmodalTitle("Registrar");
 }
 
@@ -167,19 +167,16 @@ const handleDialogToggle = () => {
   setisDialogOpen(!isDialogOpen);
 }
 
-const handleDragStart=(e,id,item)=>{
+const handleDragStart=(e,id,item,index)=>{
   setdragElementId(id);
   setdata(item.data);
   setoldStatus(item.data.status);
-  setindex(id);
+  setindex(index);
 }
 
 const handleOnDrop = (e,status) =>{
   if(!isGod){return}
-
-  if(oldStatus === status){
-    return;
-  }
+  if(oldStatus === status){return}
   confirmChangeStatus(status);
 }
 
@@ -201,6 +198,13 @@ const confirmChangeStatus = (status) =>{
     }
 
     if (window.confirm(`La tarea cambiara su estado a '${statusName}'`)) {
+      var index = todos.findIndex(x=> x.id === dragElementId);
+
+        if (index !== -1){
+          const arr = [...todos];
+          arr[index] = {id:arr[index].id, data: data} ;
+          setTodos(arr);
+        }
       handleUpdate();
     }
 }
@@ -270,7 +274,23 @@ const confirmChangeStatus = (status) =>{
      
     </TodoContainer>
 
-
+    <TodoModal
+       title={modalTitle}
+       open={isModalOpen}
+       onClose={handleModalClose}
+       data={data}
+       categories={categories}
+       status={status}
+       handleInputChange={handleInputChange}
+       handleSelectChange={handleSelectChange}
+       onChangeImage={onChangeImage}
+       onCreateItem={handleSave}
+       onUpdateItem={handleUpdate}
+       setImages={setImages}
+       maxNumber={maxNumber}
+       images={images}
+       isUpdate={isUpdate}
+       />
     
     <AlertDialog 
         color={theme.danger}
