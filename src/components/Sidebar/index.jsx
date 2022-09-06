@@ -59,8 +59,11 @@ const Sidebar = () => {
       </SidebarLogo>
 
       <SidebarDivider />
-      {linksArray.map(({ icon, label, notification, to, submenu }) => (
-        <SidebarLinkContainer key={label} >
+      {linksArray.map(({ icon, label, notification, to, submenu,visibleOnlyFor }) => (
+    
+    ((visibleOnlyFor.indexOf(currentUser.rol) > -1) || visibleOnlyFor === '') && //Verify permition ROL
+
+        (<SidebarLinkContainer key={label} >
           <SidebarLink to={!submenu ? to : '#'} style={!sidebarOpen ? { width: `fit-content` } : {}} >
             <SidebarLinkWrapper onClick={() => { !submenu && setSidebarOpen(false) }}>
               <SidebarLinkIcon isOpen={sidebarOpen} >{icon}</SidebarLinkIcon>
@@ -91,12 +94,12 @@ const Sidebar = () => {
               </SidebarDropdown>
             </SidebarDropdownContainer>
           }
-        </SidebarLinkContainer>
+        </SidebarLinkContainer>)
       ))}
       <SidebarDivider />
       {secondaryLinksArray.map(({ icon, label, to,visibleOnlyFor }) => (
         currentUser &&
-          visibleOnlyFor === currentUser.rol && 
+       (visibleOnlyFor.indexOf(currentUser.rol) > -1) && //Verify permition ROL
           (<SidebarLinkContainer key={label}>
           <SidebarLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}} onClick={() => { setSidebarOpen(false) }}>
             <SidebarLinkWrapper>

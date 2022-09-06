@@ -20,6 +20,7 @@ const Navbar = () => {
         <div>
         {
             currentUser ? 
+            <Link to='/perfil'>
             <Button>
             <NavProfileContent>
                 <NavProfileIMG src={photo ? photo : gender === 'Mujer' ? userWoman : userMan}/>
@@ -29,6 +30,7 @@ const Navbar = () => {
                 </NavProfileText>
             </NavProfileContent>
             </Button>
+            </Link>
             :
             <Link to='/login'>
                 <Button>

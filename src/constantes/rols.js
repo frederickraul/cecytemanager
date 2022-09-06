@@ -11,6 +11,11 @@ export const rols =[
     },
     {
         id:3,
+        label: 'Subdirector',
+        value: 'subdirector',
+    },
+    {
+        id:4,
         label: 'Profesor',
         value: 'profesor',
     }

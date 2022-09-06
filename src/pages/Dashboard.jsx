@@ -6,9 +6,9 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { createEventId } from '../constantes/event-utils';
 import esLocale from '@fullcalendar/core/locales/es';
 import { useAuth } from '../context/AuthContext';
-import AnimatedModal from '../components/utils/CustomModal/AnimatedModal';
-import { Button } from '@mui/material';
 import EventsModal from './EventsModal';
+import { CalendarContainer, CalendarSidebar, CalendarSidebarButton } from './styles';
+import { BsList } from 'react-icons/bs';
 
 
 
@@ -20,7 +20,7 @@ const [INITIAL_EVENTS, setINITIAL_EVENTS] = useState([]);
 const [isModalOpen, setisModalOpen] = useState(false);
 const [selectedEvent, setselectedEvent] = useState({title:'',start:'',end:'',allDay:'',userName:''});
 const [selectedCalendarEvent, setSelectedCalendarEvent] = useState([]);
-
+const [isEventListOpen, setIsEventListOpen] = useState(false);
 useEffect(() => {
   getData('events',setINITIAL_EVENTS,'start');
   getData('events',setcurrentEvents,'start');
@@ -32,7 +32,10 @@ useEffect(() => {
 const RenderSidebar = () => {
   
       return (
-      <div className='CalendarSidebar'>
+      <CalendarSidebar isOpen={isEventListOpen}>
+        <CalendarSidebarButton isOpen={isEventListOpen} onClick={() => setIsEventListOpen((p) => !p)}>
+          <BsList size='1.2em' />
+        </CalendarSidebarButton>        
         <div className='CalendarSidebarSection'>
           <h2>Eventos ({INITIAL_EVENTS.length})</h2>
           <ul>
@@ -57,7 +60,7 @@ const RenderSidebar = () => {
             ))}
           </ul>
         </div>
-      </div>)
+      </CalendarSidebar>)
     
   }
 
@@ -181,7 +184,7 @@ const renderSidebarEvent = (event) => {
       </div>
       <div className='CalendarSection'>
       <RenderSidebar/>
-     <div className='CalendarContainer'>
+     <CalendarContainer>
      <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             headerToolbar={{
@@ -222,7 +225,7 @@ const renderSidebarEvent = (event) => {
             currentUserId={currentUser? currentUser.uid : ''}
             isGod={isGod}
           />
-     </div>
+     </CalendarContainer>
 
         </div>
     </div>

@@ -16,7 +16,7 @@ export const SidebarContainer = styled.div`
 
     @media screen and (max-width: 768px){
         width: ${({ isOpen }) => (!isOpen ? '0' : '230px')};    
-        left: ${({ isOpen }) => (isOpen ? `0px` : `-60px`)};
+        left: ${({ isOpen }) => (isOpen ? `0px` : `-70px`)};
     }
 `
 
@@ -58,7 +58,7 @@ export const SidebarButton = styled.button`
 
     @media screen and (max-width: 768px){
         top: 10px;
-        right: ${({ isOpen }) => (isOpen ? `-16px` : `-80px`)};
+        right: ${({ isOpen }) => (isOpen ? `-16px` : `-90px`)};
 
     }
 `;

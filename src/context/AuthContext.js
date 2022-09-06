@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut,getAuth,sendPasswordResetEmail} from 'firebase/auth';
 import { addDoc, collection, getDocs, deleteDoc, query, orderBy, where, doc, setDoc, getDoc, startAt, endAt } from 'firebase/firestore';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -209,6 +209,31 @@ export const StateContext = ({ children }) => {
             setisLoading(false);
     }
 
+    const updateUserPassword = async(email) => {
+        setisLoading(true);
+        const auth = getAuth();
+        auth.languageCode = 'es';
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            setalertMessage('Revisa tu correo electronico para continuar con el cambio de contraseña.');
+            setalertSeverity('success');
+            setisAlertOpen(true);
+            setisLoading(false);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setalertMessage('Upss algo salio mal.');
+            setalertSeverity('error');
+            setisAlertOpen(true);
+            setisLoading(false);
+            console.log(error);
+        });
+            
+
+
+    }
+
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             if(user){
@@ -282,6 +307,7 @@ export const StateContext = ({ children }) => {
                 getDataWhereArray,
                 saveData,
                 updateData,
+                updateUserPassword,
             }}>
             {children}
 

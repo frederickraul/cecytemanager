@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../constantes";
+import { btnReset } from "../styles/variables";
 
 
 export const CotizacionContainer = styled.div`
@@ -204,3 +205,63 @@ export const ModalFooter = styled.div`
     flex-direction: row-reverse;
     justify-content: space-between;
 `
+
+
+export const CalendarSidebar  = styled.div`
+    display: flex;
+    width: 300px;
+    line-height: 1.5;
+    background: #eaf9ff;
+    border-right: 1px solid #d3e2e8;
+    transition: .5s ease-in-out 0s;
+
+    @media screen and (max-width: 480px){
+    top: 90px;
+    padding: 10px;
+    z-index: 2;
+    height: 120vh;
+    
+    position: ${({ isOpen }) => (!isOpen ? 'fixed' : 'absolute')};    
+        width: ${({ isOpen }) => (!isOpen ? '0' : '230px')};    
+        left: ${({ isOpen }) => (isOpen ? `0px` : `-200px`)};
+    }
+`
+
+
+export const CalendarSidebarButton = styled.button`
+    ${btnReset};
+    position: absolute;
+    top: 75px;
+    right: ${({ isOpen }) => (isOpen ? `-15px` : `-40px`)};
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #FFF;
+    box-shadow: 0 0 4px ${theme.secondaryColor}, 0 0 7px ${theme.secondaryColor};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: ${theme.secondaryColor};
+    transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
+    display: none;
+
+    @media screen and (max-width: 480px){
+        display: flex;
+        top: 10px;
+        right: ${({ isOpen }) => (isOpen ? `-16px` : `-220px`)};
+
+    }
+`;
+
+export const CalendarContainer = styled.div`
+        flex-grow: 1;
+    padding: 3em;
+    
+    @media screen and (max-width: 480px){
+        padding: 0;
+        margin: 0;
+        font-size: .7rem !important;
+    }
+`;
+

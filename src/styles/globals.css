@@ -1218,6 +1218,13 @@ background-color: transparent !important;
 .text-success:hover {
   color: #28a745 !important;
 }
+.text-primary {
+  color: #5E50F9 !important;
+}
+
+.text-primary:hover {
+  color: #5E30e9 !important;
+}
 
 .text-danger{
   color: #dd6053 !important;;
