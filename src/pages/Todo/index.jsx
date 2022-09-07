@@ -16,22 +16,21 @@ import { Line, TodoColumn, TodoContainer, TodoH3 } from './styles';
 import TodoModal from './TodoModal';
 import moment from 'moment'
 import 'moment/locale/es';
+import Validate from './Validate';
 
 
 const now = new Date();
-var nowFormatted = moment(now).format('DD MMMM YYYY');
 var createdAt = moment(now).format('YYYY-MM-DD');
-
 
 const TodoList = () => {
   const [isUpdate, setisUpdate] = useState(false);
   const [categories, setcategories] = useState([]);
   const [isDialogOpen, setisDialogOpen] = useState(false);
   const [index, setindex] = useState();
+  const [formErrors, setformErrors] = useState({});
 
   const [data, setdata] = useState({status: 'pending'});
   const [todos, setTodos] = useState([]);
-  const [todo, setTodo] = useState({status: 'pending'});
   const [oldStatus, setoldStatus] = useState('');
   const [modalTitle, setmodalTitle] = useState('Registrar')
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -101,6 +100,11 @@ const TodoList = () => {
   }
 
   const handleSave = () => {
+    let error = 0;
+    error = Validate({setformErrors, data});
+    if(error>0){ 
+      return;
+    }
         saveData('todos',data);
         getTodos();
         handleModalClose();
@@ -144,7 +148,7 @@ const handleModalClose = () => {
 const handleRegisterClick = () => {
   handleModalOpen();
   setisUpdate(false);
-  setdata({status: 'pending',createdAt: createdAt});
+  setdata({status: 'pending', createdAt: createdAt});
   setmodalTitle("Registrar");
 }
 
@@ -211,7 +215,7 @@ const confirmChangeStatus = (status) =>{
   return(
     <div> 
     <div className='products-heading'>
-    <Link to='/ajustes'>
+    <Link to='#'>
       <ItemH2>
         Lista de pendientes
       </ItemH2>
@@ -281,6 +285,7 @@ const confirmChangeStatus = (status) =>{
        data={data}
        categories={categories}
        status={status}
+       formErrors={formErrors}
        handleInputChange={handleInputChange}
        handleSelectChange={handleSelectChange}
        onChangeImage={onChangeImage}

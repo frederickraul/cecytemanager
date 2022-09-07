@@ -11,11 +11,11 @@ import { ItemH2 } from '../Inventario/styles';
 import { rols } from '../../constantes/rols';
 import { priorities } from '../../constantes/priorities';
 import { status as statusLevel } from '../../constantes/status';
+import { CotizacionError } from '../Quotation/styles';
 
 const TodoModal = (props) => {
-    
     const { desc, priority, category,status } = props.data;
-    const { handleInputChange, handleSelectChange, categories,onCreateItem,onUpdateItem,isUpdate } = props;
+    const { handleInputChange, handleSelectChange, categories,onCreateItem,onUpdateItem,isUpdate,formErrors } = props;
     return (
         <AnimatedModal {...props}>
             <ModalTitle>
@@ -33,10 +33,12 @@ const TodoModal = (props) => {
               />
             </Field>
 
+            <CotizacionError className="has-error">{formErrors&& formErrors.category}</CotizacionError>
             <Field>
                 <Label>Departamento</Label>
                 <Select
                 className="dropdown"
+                menuPosition='fixed'                 
                 options={categories}
                 getOptionLabel={option => `${option.data.name}`}
                 getOptionValue={option => `${option.data.slug}`}
@@ -45,6 +47,7 @@ const TodoModal = (props) => {
               />
             </Field>
 
+            <CotizacionError className="has-error">{formErrors&& formErrors.desc}</CotizacionError>
             <Field>
                 <Label>Descripcíón</Label>
                 <Textarea
@@ -52,6 +55,7 @@ const TodoModal = (props) => {
                     onChange={(e) => handleInputChange(e, 'desc')}
                 />
             </Field>
+            <CotizacionError className="has-error">{formErrors&& formErrors.priority}</CotizacionError>
             <Field>
                 <Label>Prioridad</Label>
                 <Select

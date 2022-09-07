@@ -2,16 +2,16 @@ export const status =[
     {
         id:1,
         label: 'Pendiente',
-        value: 'pendiente',
+        value: 'pending',
     },
     {
         id:2,
         label: 'En progreso',
-        value: 'enprogreso',
+        value: 'wip',
     },
     {
         id:3,
         label: 'Completado',
-        value: 'completado',
+        value: 'completed',
     }
 ];

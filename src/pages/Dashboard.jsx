@@ -9,8 +9,12 @@ import { useAuth } from '../context/AuthContext';
 import EventsModal from './EventsModal';
 import { CalendarContainer, CalendarSidebar, CalendarSidebarButton } from './styles';
 import { BsList } from 'react-icons/bs';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { ItemH2 } from './Inventario/styles';
 
-
+const now = new Date();
+var createdAt = moment(now).format('YYYY-MM-DD');
 
 const Dashboard = () => {
 const [weekendsVisible, setweekendsVisible] = useState(false);
@@ -37,9 +41,9 @@ const RenderSidebar = () => {
           <BsList size='1.2em' />
         </CalendarSidebarButton>        
         <div className='CalendarSidebarSection'>
-          <h2>Eventos ({INITIAL_EVENTS.length})</h2>
+          <h2>Eventos ({INITIAL_EVENTS.filter((event=>new Date(event.start) >= new Date())).length})</h2>
           <ul>
-            {INITIAL_EVENTS.map((event) =>(
+            {INITIAL_EVENTS.filter((event=>new Date(event.start) >= new Date())).map((event) =>(
                   <li key={event.id}>
                     <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
                     <br/>
@@ -182,11 +186,16 @@ const renderSidebarEvent = (event) => {
 }
 
     return (
-      <div className='bgWhite'>
+      <div className=''>
       <div className='products-heading'>
-        <h2>Calendario</h2>
+      <Link to='#'>
+      <ItemH2>
+        Calendario
+      </ItemH2>
+    </Link>
+      <p>Administrar eventos</p>
       </div>
-      <div className='CalendarSection'>
+      <div className='CalendarSection bgWhite'>
       <RenderSidebar/>
      <CalendarContainer>
      <FullCalendar

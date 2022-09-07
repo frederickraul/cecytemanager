@@ -214,12 +214,15 @@ export const CalendarSidebar  = styled.div`
     background: #eaf9ff;
     border-right: 1px solid #d3e2e8;
     transition: .5s ease-in-out 0s;
-
+    height: 100vh;
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+    
     @media screen and (max-width: 480px){
     top: 90px;
     padding: 10px;
     z-index: 2;
-    height: 120vh;
+    height: 90vh;
     
     position: ${({ isOpen }) => (!isOpen ? 'fixed' : 'absolute')};    
         width: ${({ isOpen }) => (!isOpen ? '0' : '230px')};    
@@ -230,9 +233,9 @@ export const CalendarSidebar  = styled.div`
 
 export const CalendarSidebarButton = styled.button`
     ${btnReset};
-    position: absolute;
-    top: 75px;
-    right: ${({ isOpen }) => (isOpen ? `-15px` : `-40px`)};
+    position: fixed;
+    top: 100px !important;
+    left: ${({ isOpen }) => (isOpen ? `212px` : `7px`)};
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -247,6 +250,7 @@ export const CalendarSidebarButton = styled.button`
     display: none;
 
     @media screen and (max-width: 480px){
+        z-index: 999999 !important;
         display: flex;
         top: 10px;
         right: ${({ isOpen }) => (isOpen ? `-16px` : `-220px`)};
