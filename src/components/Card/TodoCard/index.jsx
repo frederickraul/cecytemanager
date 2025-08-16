@@ -1,5 +1,8 @@
 import React from 'react'
 import { TodoCardContainer, TodoTime } from './styles'
+import {CloseButton, DeleteButton} from '../../../components'
+import { CloseIcon } from '../../../constantes/icons';
+import { Button } from '@mui/material';
 
 const TodoCard = ({ item: {data},item,index, handeModalOpen,handleDelete,onDragStart}) => {
     const {priority,desc,category,createdAt} = data;
@@ -19,11 +22,15 @@ const TodoCard = ({ item: {data},item,index, handeModalOpen,handleDelete,onDragS
     }
 
   return (
+
     <TodoCardContainer color={color} onClick={handeModalOpen} draggable onDragStart={onDragStart}>
+       { handleDelete ?  <DeleteButton onClick={handleDelete}/> : <></>}
+
         <TodoTime><i>{createdAt}</i></TodoTime>
         <b>{category}</b>
        <p> {desc}</p>
     </TodoCardContainer>
+    
   )
 }
 

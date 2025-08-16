@@ -2,9 +2,9 @@ import React from 'react'
 import { TiDelete } from 'react-icons/ti';
 import { ButtonContainer } from './styles';
 
-const index = () => {
+const index = (props) => {
   return (
-    <ButtonContainer>
+    <ButtonContainer {...props}>
         <TiDelete/>
     </ButtonContainer>
   )

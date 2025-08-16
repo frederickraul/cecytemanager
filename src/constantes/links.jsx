@@ -23,7 +23,7 @@ export const linksArray = [
         icon: <BiTask />,
         to: "/TodoList",
         notification: 0,
-        visibleOnlyFor: "[god,subdirector]"
+        visibleOnlyFor: "[god,subdirector,coordinador]"
     }
     
 ];

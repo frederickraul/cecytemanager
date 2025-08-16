@@ -79,6 +79,7 @@
     flex-direction: column;
 }
 .auth-container .form .animated-input input[type='text'] ,
+.auth-container .form .animated-input input[type='email'] ,
 .auth-container .form .animated-input input[type='password'] {
     font-size: 1.3rem;
     padding: 20px 10px 2px 10px;

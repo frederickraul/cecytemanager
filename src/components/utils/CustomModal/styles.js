@@ -5,7 +5,6 @@ export const ModalContainer = styled(Modal)`
         display: flex;
        align-items: center;
         justify-content:center;
-       overflow: auto;
 
        @media screen and (max-width: 768px){
         display: block;

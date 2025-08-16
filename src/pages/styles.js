@@ -188,7 +188,7 @@ export const ModalContainer = styled.div`
     justify-content: space-between;
     position: relative;
     margin: 0px !important;
-    height: 100%;
+    height: 75%;
     min-height:200px;
 `
 
@@ -196,7 +196,23 @@ export const ModalHeader = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media screen and (max-width: 768px){
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+    }
 `
+
+export const ModalDate = styled.div`
+     @media screen and (max-width: 768px){
+        flex-direction: row;
+        text-align: right;
+        font-size: .7rem;
+    }
+`
+
 export const ModalBody = styled.div`
     display: flex;
 `

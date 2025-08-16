@@ -110,9 +110,9 @@ const Login = () => {
         </div>
         <div>
         </div>
-        <form className="form">
+        <form className="form" autoComplete='on'>
           <div className="animated-input">
-            <input type="text" placeholder="Usuario" value={data.user || ''}
+            <input type="email" autoComplete='on' placeholder="Usuario" value={data.user || ''}
               onChange={(e) => handleInputChange(e, 'user')} />
             <input type="password" placeholder="Contraseña" value={data.password || ''}
               onChange={(e) => handleInputChange(e, 'password')} />

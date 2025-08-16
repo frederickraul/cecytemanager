@@ -61,6 +61,7 @@ export const StateContext = ({ children }) => {
                             allDay: doc.data().allDay,
                             userName: doc.data().userName,
                             userId: doc.data().userId,
+                            color: doc.data().color,
                         }));
                     break;
                     default:

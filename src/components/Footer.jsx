@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <div className='footer-container'>
-      <p>&copy; Copyright 2022-{currentYear}, Mtro. Raúl Suchilt Fonseca.
+      <p>&copy; Copyright 2022-{currentYear}, SFR.
   </p>
       <p className='icons'> 
        

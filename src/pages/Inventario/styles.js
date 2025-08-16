@@ -6,7 +6,7 @@ export const ItemH4 = styled.h4`
 `
 
 export const ItemH2 = styled.h2`
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 800;
     cursor: pointer;
 `

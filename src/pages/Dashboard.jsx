@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { ItemH2 } from './Inventario/styles';
 
 const now = new Date();
+const today = moment().format('YYYY-MM-DD');
 var createdAt = moment(now).format('YYYY-MM-DD');
 
 const Dashboard = () => {
@@ -25,10 +26,13 @@ const [isModalOpen, setisModalOpen] = useState(false);
 const [selectedEvent, setselectedEvent] = useState({title:'',start:'',end:'',allDay:'',userName:''});
 const [selectedCalendarEvent, setSelectedCalendarEvent] = useState([]);
 const [isEventListOpen, setIsEventListOpen] = useState(false);
+
+const [selectedColor, setselectedColor] = useState('#3788D8')
+const [isColorChanged, setisColorChanged] = useState(false);
+
 useEffect(() => {
   getData('events',setINITIAL_EVENTS,'start');
   getData('events',setcurrentEvents,'start');
-
 }, []);
 
 
@@ -41,11 +45,12 @@ const RenderSidebar = () => {
           <BsList size='1.2em' />
         </CalendarSidebarButton>        
         <div className='CalendarSidebarSection'>
-          <h2>Eventos ({INITIAL_EVENTS.filter((event=>new Date(event.start) >= new Date())).length})</h2>
+          <h2>Eventos ({INITIAL_EVENTS.filter((event=>new Date(event.start).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0))).length})</h2>
           <ul>
-            {INITIAL_EVENTS.filter((event=>new Date(event.start) >= new Date())).map((event) =>(
-                  <li key={event.id}>
+            {INITIAL_EVENTS.filter((event=>new Date(event.start).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0))).map((event) =>(
+                  <li key={event.id} className={(moment(event.start).format("YYYY-MM-DD")) === today ? "fc-day-today upcommingEvents" : "upcommingEvents"}>
                     <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
+          
                     <br/>
                     {event.allDay ?
                   <b>Todo el dia</b>
@@ -73,6 +78,14 @@ const RenderSidebar = () => {
   
   }
 
+  const handleEventClose = ()=>{
+      handleCloseModal();
+      if(isColorChanged){
+        handleEventUpdate(selectedCalendarEvent);
+        setisColorChanged(false);
+      }
+  }
+
   const handleWeekendsToggle = () => {
     setweekendsVisible(!weekendsVisible);
   }
@@ -90,7 +103,7 @@ const RenderSidebar = () => {
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
-        allDay: selectInfo.allDay
+        allDay: selectInfo.allDay,
       })
     }
   }
@@ -102,6 +115,9 @@ const RenderSidebar = () => {
     });
     handleCloseModal();
     setselectedEvent(event);
+    console.log(event);
+    const color = event.color ? event.color : '#3788D8';
+    setselectedColor(color);
     setSelectedCalendarEvent(clickInfo)
   }
 
@@ -147,9 +163,12 @@ const RenderSidebar = () => {
       allDay: allDay,
       userName: userName,
       userId: userId,
+      color: selectedColor,
+
     };
 
     updateData('events',newEvent,id);
+    //window.location.reload(true);
   }
 
   const handleConfirmEventDelete = () => {
@@ -206,7 +225,7 @@ const renderSidebarEvent = (event) => {
               right: 'dayGridMonth,timeGridWeek,timeGridDay'
             }}
             initialView='dayGridMonth'
-            timeZone='UTC'
+            timeZone='America/Tijuana'
 
             locale={esLocale}
             editable={currentUser ? true : false}
@@ -214,9 +233,11 @@ const renderSidebarEvent = (event) => {
             selectMirror={true}
             dayMaxEvents={true}
             events={currentEvents} // alternatively, use the `events` setting to fetch from a feed
+            //eventBackgroundColor= '#378006'
             select={handleDateSelect}
             eventContent={renderEventContent} // custom render function
             eventClick={handleEventClick}
+            setcurrentEvents='#ff0000'
             //eventsSet={handleEvents} 
             // called after events are initialized/added/changed/removed
             /* you can update a remote database when these fire:*/
@@ -228,7 +249,7 @@ const renderSidebarEvent = (event) => {
           <EventsModal
             open={isModalOpen}
             action={handleConfirmEventDelete}
-            onClose={handleCloseModal}
+            onClose={handleEventClose}
             title={selectedEvent.title}
             start={selectedEvent.start}
             end={selectedEvent.end}
@@ -237,6 +258,9 @@ const renderSidebarEvent = (event) => {
             userId={selectedEvent.userId}
             currentUserId={currentUser? currentUser.uid : ''}
             isGod={isGod}
+            selectedColor={selectedColor}
+            setselectedColor={setselectedColor}
+            setisColorChanged={setisColorChanged}
           />
      </CalendarContainer>
 

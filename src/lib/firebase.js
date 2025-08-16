@@ -7,13 +7,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAJPyP0Pui79ECD9wNpZsTjAHE7BMc4fF4",
-  authDomain: "cachanillamanager.firebaseapp.com",
-  projectId: "cachanillamanager",
-  storageBucket: "cachanillamanager.appspot.com",
-  messagingSenderId: "679398847980",
-  appId: "1:679398847980:web:e0af933195f1dc9ef47cc9",
-  measurementId: "G-5RP5KLMPN9"
+  apiKey: "AIzaSyA3GAcGfYdZxLttApxEaGGThKl4Q-n88as",
+  authDomain: "playasmanager.firebaseapp.com",
+  projectId: "playasmanager",
+  storageBucket: "playasmanager.appspot.com",
+  messagingSenderId: "773463658146",
+  appId: "1:773463658146:web:7920b02952ac56c75ed1fb",
+  measurementId: "G-BZE2J894SX"
 };
 
 // Initialize Firebase

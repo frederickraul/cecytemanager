@@ -163,7 +163,8 @@ const handleUpdateClick = (item,id) => {
 
 
 const handleOpenAlert = (id) =>{
-  setindex(id);
+  console.log(id);
+  setdragElementId(id);
   setisDialogOpen(true);
 }
 
@@ -240,8 +241,9 @@ const confirmChangeStatus = (status) =>{
               onDragStart={(e)=>{handleDragStart(e,item.id, item)}}
               //handeModalOpen={() => handleUpdateClick(item.data,item.id)}
               handleInputChange={handleInputChange}
-              handleDelete={handleOpenAlert}              
-              setdata={setdata} />
+              handleDelete={()=>{isGod && handleOpenAlert(item.id) }}              
+              setdata={setdata}
+              />
         )}
       </TodoColumn>  
       <TodoColumn onDrop={(e)=>{handleOnDrop(e,'wip')}} onDragOver={(e)=>{handleOnDragOver(e,'wip')}}>
@@ -255,7 +257,6 @@ const confirmChangeStatus = (status) =>{
               onDragStart={(e)=>{handleDragStart(e,item.id,item)}}
              // handeModalOpen={() => handleUpdateClick(item.data,item.id)}
               handleInputChange={handleInputChange}
-              handleDelete={handleOpenAlert}              
               setdata={setdata} />
         )}
         </TodoColumn>   
@@ -271,7 +272,6 @@ const confirmChangeStatus = (status) =>{
               onDragStart={(e)=>{handleDragStart(e,item.id,item)}}
               //handeModalOpen={() => handleUpdateClick(item.data,item.id)}
               handleInputChange={handleInputChange}
-              handleDelete={handleOpenAlert}              
               setdata={setdata} />
         )}
         </TodoColumn>   
@@ -304,7 +304,7 @@ const confirmChangeStatus = (status) =>{
         action={handleDelete}
         handleClose={handleDialogToggle}
         //title={'Eliminar usuario'}
-        message={'Eliminar tarea. ¿Estas seguro?'}
+        message={'Estas a punto de eliminar esta tarea. ¿Estas seguro?'}
         />
 
   </div>
