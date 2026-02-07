@@ -57,7 +57,8 @@ export const SidebarButton = styled.button`
     transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
 
     @media screen and (max-width: 768px){
-        top: 10px;
+    z-index: 999999;    
+    top: 20px;
         right: ${({ isOpen }) => (isOpen ? `-16px` : `-90px`)};
 
     }

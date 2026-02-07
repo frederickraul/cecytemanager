@@ -13,7 +13,7 @@ const Navbar = () => {
     const {photo,gender,name} = currentUser? currentUser : '';
 
     return (
-    <div className='navbar-container' style={{zIndex: 5}}>
+    <div className='navbar-container' style={{zIndex: 2}}>
         <p className='logo'>
             
         </p>
