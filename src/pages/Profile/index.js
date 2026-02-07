@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import  { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ItemH2 } from '../Inventario/styles';
 import { useAuth } from '../../context/AuthContext';
 import Validate from './Validate';
@@ -8,19 +8,13 @@ import ProfileModal from './ProfileModal';
 
 
 const ProviderDetails = () => {
-  const [id, setid] = useState();
-  const {updateData,setisLoading, currentUser, getDataById,updateUserPassword} = useAuth(); 
-  const [item, setitem] = useState([]);
+  const { currentUser, getDataById,updateUserPassword} = useAuth(); 
   const [data, setdata] = useState([]);
-  const {slug} = useParams();
   const [formErrors, setformErrors] = useState(['']);
   const [isModalOpen, setisModalOpen] = useState(false);
 
 
-  useEffect(() => {
-    getItem();
-  }, []);
-
+  
   const getItem =() =>{
     const id = currentUser.uid; 
     try {
@@ -29,7 +23,10 @@ const ProviderDetails = () => {
       console.log(error);
     }
   }
-
+  
+  useEffect(() => {
+    getItem();
+  },[]);
 
 
   const handleChangePassword = () => {

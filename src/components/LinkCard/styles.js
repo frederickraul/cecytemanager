@@ -29,10 +29,10 @@ export const LinkCardIcon = styled.div`
             transform: scale(1, 1);
             transition: transform 0.5s ease;
             background-color:  ${({ background }) => (
-                background == 0 ? theme.bgGradientPrimary : 
-                background == 1 ? theme.bgGradientSuccess : 
-                background == 2 ? theme.bgGradientWarning : 
-                background == 3 ? theme.bgGradientDanger : theme.bgGradientDark 
+                background === 0 ? theme.bgGradientPrimary : 
+                background === 1 ? theme.bgGradientSuccess : 
+                background === 2 ? theme.bgGradientWarning : 
+                background === 3 ? theme.bgGradientDanger : theme.bgGradientDark 
                 )};
             
         }

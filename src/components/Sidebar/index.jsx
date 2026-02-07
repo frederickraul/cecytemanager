@@ -1,6 +1,23 @@
-import React, { useState } from 'react';
-import { Logo, SidebarButton, SidebarContainer, SidebarContainerBackground, SidebarDivider, SidebarDropdown, SidebarDropdownContainer, SidebarDropdownItem, SidebarLink, SidebarLinkContainer, SidebarLinkIcon, SidebarLinkLabel, SidebarLinkNotification, SidebarLinkWrapper, SidebarLogo, SidebarLogoLink, SidebarSmallLogoLink, SidebarTheme, SidebarThemeToggler, SmallLogo } from './styles';
-import { cecytebcLogo, cecytebcLogoSmall, newLogo, newLogoSmall } from '../../assets';
+import { useState } from 'react';
+import { Logo, 
+          SidebarButton, 
+          SidebarContainer, 
+          SidebarContainerBackground, 
+          SidebarDivider, 
+          SidebarDropdown, 
+          SidebarDropdownContainer, 
+          SidebarDropdownItem, 
+          SidebarLink, 
+          SidebarLinkContainer, 
+          SidebarLinkIcon, 
+          SidebarLinkLabel, 
+          SidebarLinkNotification, 
+          SidebarLinkWrapper, 
+          SidebarLogo, 
+          SidebarLogoLink, 
+          SidebarSmallLogoLink, SmallLogo } from './styles';
+
+import { cecytebcLogo, cecytebcLogoSmall } from '../../assets';
 
 import {
   AiOutlineLeft,
@@ -18,14 +35,14 @@ const Sidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { signout,currentUser } = useAuth();
 
-  const searchClickHandler = () => {
-    if (!sidebarOpen) {
-      setSidebarOpen(true);
-      //searchRef.current.focus();
-    } else {
-      // search functionality
-    }
-  };
+  // const searchClickHandler = () => {
+  //   if (!sidebarOpen) {
+  //     setSidebarOpen(true);
+  //     //searchRef.current.focus();
+  //   } else {
+  //     // search functionality
+  //   }
+  // };
 
   const handleLogOut = async () => {
     console.log('Saliendo');

@@ -1,6 +1,3 @@
-import React,{useState} from 'react';
-
-
 import { Card, LinkCardIcon, LinkCardP } from './styles';
 import { Link } from 'react-router-dom';
 import { CardWrapper } from '../Card/styles';

@@ -1,14 +1,12 @@
-import React from 'react'
 import Select from 'react-select';
 
 import { Button} from '@mui/material';
-import { SaveIcon } from '../../constantes/icons';
 import { rols } from '../../constantes/rols';
-import { CotizacionButtons, CotizacionError, CotizacionField, CotizacionInput, CotizacionLabel, CotizacionTextarea } from '../Quotation/styles'
+import { CotizacionButtons, CotizacionField, CotizacionInput, CotizacionLabel, CotizacionTextarea } from '../Quotation/styles'
 import { CotizacionContainer, CotizacionCustomerInfo,CotizacionCustomerInfoContainer } from '../styles'
 
 const Form = (props) => {
-    const {data,handleInputChange,handleChangePassword,} = props;
+    const {data,handleChangePassword,} = props;
   return (
     <CotizacionContainer>
     <CotizacionCustomerInfo>

@@ -21,7 +21,7 @@ const CategoryCard = ({ item: {data},item,index, handeModalOpen,handleDelete}) =
   }
   return (
     <div>
-      {name == 'Otros' ||
+      {name === 'Otros' ||
       <CardWrapper>
         <Link to='#'>
           <CardContent>

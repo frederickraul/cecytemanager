@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { noAvailableImg } from "../../assets";
-
 
 export const ItemCardContent = styled.div`
   cursor: pointer;

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import {useState,useEffect} from 'react';
 import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -13,14 +13,12 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { ItemH2 } from './Inventario/styles';
 
-const now = new Date();
 const today = moment().format('YYYY-MM-DD');
-var createdAt = moment(now).format('YYYY-MM-DD');
+// var createdAt = moment(now).format('YYYY-MM-DD');
 
 const Dashboard = () => {
-const [weekendsVisible, setweekendsVisible] = useState(false);
 const [currentEvents, setcurrentEvents] = useState([]);
-const { getData,setisLoading,saveData, updateData,deleteData,currentUser,isGod } = useAuth();
+const { getData,saveData, updateData,deleteData,currentUser,isGod } = useAuth();
 const [INITIAL_EVENTS, setINITIAL_EVENTS] = useState([]);
 const [isModalOpen, setisModalOpen] = useState(false);
 const [selectedEvent, setselectedEvent] = useState({title:'',start:'',end:'',allDay:'',userName:''});
@@ -86,9 +84,9 @@ const RenderSidebar = () => {
       }
   }
 
-  const handleWeekendsToggle = () => {
-    setweekendsVisible(!weekendsVisible);
-  }
+  // const handleWeekendsToggle = () => {
+  //   setweekendsVisible(!weekendsVisible);
+  // }
 
   const handleDateSelect = (selectInfo) => {
     if(!currentUser) return;
@@ -187,9 +185,9 @@ const RenderSidebar = () => {
  }
   
 
- const handleEvents = (events) => {
-    setcurrentEvents(events);
-  }
+//  const handleEvents = (events) => {
+//     setcurrentEvents(events);
+//   }
 
 
 
@@ -198,10 +196,6 @@ const renderEventContent = (eventInfo) => {
       <b>{eventInfo.timeText}</b>
       <i>{eventInfo.event.title}</i>
     </>
-}
-
-const renderSidebarEvent = (event) => {
-  
 }
 
     return (

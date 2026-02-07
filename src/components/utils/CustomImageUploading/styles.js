@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../../constantes";
 
 export const ImageUploadingWrapper = styled.div`
     display: flex;

@@ -1,13 +1,10 @@
-import React from "react";
 import {
-    AiOutlineHome,
-    AiOutlinePercentage,
     AiOutlineSetting,
     AiOutlineUsergroupAdd,
     AiOutlineCalendar,
   } from "react-icons/ai";
 
-  import { MdLogout, MdOutlineListAlt,MdAttachMoney,MdOutlineInventory2, MdOutlineCategory} from "react-icons/md";
+  import { MdOutlineCategory} from "react-icons/md";
 import { BiTask} from "react-icons/bi";
 
 export const linksArray = [

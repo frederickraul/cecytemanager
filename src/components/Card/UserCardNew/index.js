@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   CardAvatar,
@@ -16,8 +15,6 @@ import {
 } from './styles';
 import { userMan, userWoman } from '../../../assets';
 import { AiOutlineClose } from 'react-icons/ai';
-import { theme } from '../../../constantes';
-import { CardH2 } from '../styles';
 
 const UserCardNew = ({ item: { data }, item, index, handeModalOpen, setdata, setImages, handleDelete,userId,userType }) => {
   const { name, gender, photo,rol } = data;
@@ -54,7 +51,7 @@ const UserCardNew = ({ item: { data }, item, index, handeModalOpen, setdata, set
           <CardContent>
             <CardUp background={index}>
               <div>
-                {userId === id || rol !== 'god' &&
+                {(userId === id || rol !== 'god') &&
                 <CardDelete onClick={()=>handleDelete(id)}>
                   <AiOutlineClose />
                 </CardDelete>

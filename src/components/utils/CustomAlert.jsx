@@ -1,17 +1,16 @@
 import { Alert, Snackbar } from '@mui/material'
-import React, { useState } from 'react'
 import { theme } from '../../constantes';
 import { CloseIcon } from '../../constantes/icons';
 
 const CustomSnackBar = (props) => {
     const {isAlertOpen,alertMessage, severity, handleClose} = props;
-    const [position, setposition] = useState({
+    const position = {
       open: false,
       vertical: 'bottom',
       horizontal: 'center',
-    });
+    };
 
-    const { vertical, horizontal } = position;
+  const { vertical, horizontal } = position;
     
   return (
     <Snackbar autoHideDuration={5000} open={isAlertOpen} onClose={handleClose} anchorOrigin={{vertical,horizontal}}>

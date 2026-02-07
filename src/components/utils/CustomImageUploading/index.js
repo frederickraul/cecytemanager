@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import React from 'react';
 import ImageUploading from 'react-images-uploading';
 import { DeleteIcon, UpdateIcon, UploadIcon } from '../../../constantes/icons';
 import { ImageUploadingContent, ImageUploadingImg, ImageUploadingWrapper } from './styles';

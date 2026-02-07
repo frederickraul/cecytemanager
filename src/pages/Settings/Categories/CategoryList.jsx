@@ -1,7 +1,7 @@
 import {  Fab } from '@mui/material';
 import Compressor from 'compressorjs';
 import { deleteDoc, doc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdWarning } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { CategoryCard } from '../../../components';
@@ -24,9 +24,7 @@ const CategoryList = () => {
   const [data, setdata] = useState([]);
   const [modalTitle, setmodalTitle] = useState('Registrar')
   const [isModalOpen, setisModalOpen] = useState(false);
-  const [isAlertOpen, setisAlertOpen] = useState(false);
-  const [alertMessage, setalertMessage] = useState('');
-  const [alertSeverity, setalertSeverity] = useState('success');
+
 
   /**
    * Images
@@ -59,7 +57,7 @@ const CategoryList = () => {
         fileReader.readAsDataURL(file);
         fileReader.onload = () => {
           const base64 = fileReader.result;
-          setdata(prevData => ({ ...prevData, ['photo']: base64 }));
+          setdata({'photo': base64 });
 
         };
         fileReader.onerror = (error) => {
@@ -75,7 +73,7 @@ const CategoryList = () => {
       const image = imageList[0].file;
       await compressPhoto(image);
     }else{
-      setdata(prevData => ({ ...prevData, ['photo']: ''})) ;
+      setdata({'photo': ''}) ;
     }
   };
 
@@ -83,7 +81,7 @@ const CategoryList = () => {
 
   useEffect(() => {
     getCategories();
-  }, [])
+  },[])
 
 
   const getCategories = () => {
@@ -95,14 +93,14 @@ const CategoryList = () => {
         saveData('categories',data);
         getCategories();
         handleModalClose();
-        setalertMessage('El registro ha sido exitoso.');
-        setalertSeverity('success');
+        // setalertMessage('El registro ha sido exitoso.');
+        // setalertSeverity('success');
        
     } catch (error) {
-        setalertMessage('Upss algo salio mal.');
-        setalertSeverity('error');
+        // setalertMessage('Upss algo salio mal.');
+        // setalertSeverity('error');
     }
-    setisAlertOpen(true);
+    //setisAlertOpen(true);
   }
 
   const handleUpdate = () => {

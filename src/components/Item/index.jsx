@@ -1,4 +1,3 @@
-import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
@@ -9,19 +8,20 @@ import { ItemCardContent, ItemCover } from './styles';
 const Item = ({item:{data},item,handleDelete}) => {
   const {photo,name,slug,qty,category} = data;
   const {id} = item;
-  const goToTop = () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
-};
+//   const goToTop = () => {
+//     window.scrollTo({
+//         top: 0,
+//         behavior: 'smooth',
+//     });
+// };
 
-  if(category == undefined){
-    category = 'otros';
+  let cat = category;
+  if(cat === undefined){
+    cat = 'otros';
   }
   return (
     <div>
-        <Link to={`/inventario/${category.toLowerCase()}/${slug}`}>
+        <Link to={`/inventario/${cat.toLowerCase()}/${slug}`}>
             <ItemCardContent>
             <div>
             <CardDelete onClick={(e) => { e.preventDefault(); handleDelete(id); }}>

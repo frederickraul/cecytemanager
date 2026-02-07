@@ -24,7 +24,7 @@ const ProviderCard = ({ item: { data },item,handleDelete }) => {
         <Link to={'/proveedores/' + slug}>
           <CardContent>
           <CardImg background={theme.bgGradientSuccess}>
-              <img src={supplierIcon} />
+              <img src={supplierIcon} alt='' />
               <div>
                 <CardDelete onClick={(e) => { e.preventDefault(); handleDelete(id); }}>
                   <AiOutlineClose />

@@ -222,8 +222,8 @@ export const StateContext = ({ children }) => {
             setisLoading(false);
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
             setalertMessage('Upss algo salio mal.');
             setalertSeverity('error');
             setisAlertOpen(true);
@@ -261,7 +261,6 @@ export const StateContext = ({ children }) => {
                         }
                         const userDATA = {
                             uid: user.uid,
-                            email: user.email,
                             email: user.email,
                             name: user.email,
                             rol: ''

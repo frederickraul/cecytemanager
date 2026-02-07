@@ -1,9 +1,7 @@
 import { DeleteIcon } from "../constantes/icons";
 
-import React, { useState } from 'react'
 import Button from '@mui/material/Button';
-import { ButtonsContainer, Field, ModalContainer, ModalDate, ModalFooter, ModalHeader } from './styles';
-import { ModalTitle } from '../components/utils/CustomModal/styles';
+import { ModalContainer, ModalDate, ModalFooter, ModalHeader } from './styles';
 import { CloseIcon } from '../constantes/icons';
 import AnimatedModal from '../components/utils/CustomModal/AnimatedModal';
 import { ItemH2, ItemH4 } from './Inventario/styles';

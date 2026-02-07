@@ -1,6 +1,3 @@
-import React from 'react'
-import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai'
-
 const Footer = () => {
   var currentYear= new Date().getFullYear();
 

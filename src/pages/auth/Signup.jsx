@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-  Checkbox,
-  Grid,
-  TextField,
-  FormControlLabel,
-  Paper,
   Button,
   Snackbar,
   Alert
@@ -18,7 +13,7 @@ import RollerSpinner from '../../components/utils/spinner/roller';
 const Signup = () => {
   const [checked, setChecked] = useState(false);
   const [data, setdata] = useState([]);
-  const {signup,currentUser,setalertMessage,setalertSeverity} = useAuth();
+  const {signup,setalertMessage,setalertSeverity} = useAuth();
   const [error, seterror] = useState('');
   const [isLoading, setisLoading] = useState(false);
   const [isAlertOpen, setisAlertOpen] = useState(false);

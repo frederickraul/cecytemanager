@@ -1,5 +1,4 @@
-import { Button, IconButton, TextField } from '@mui/material';
-import React, { useState } from 'react'
+import { IconButton, TextField } from '@mui/material';
 import { BsSearch } from 'react-icons/bs';
 import { theme } from '../constantes';
 

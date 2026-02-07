@@ -1,27 +1,18 @@
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import {
-  Checkbox,
-  Grid,
-  TextField,
-  FormControlLabel,
-  Paper,
   Button,
-  Snackbar
 } from '@mui/material';
 import { cecytebcLogoSmall } from '../../assets';
-import CustomCheckbox from '../../components/utils/CustomCheckbox';
 import { useAuth } from '../../context/AuthContext';
-import RollerSpinner from '../../components/utils/spinner/roller';
 import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
   const history = useNavigate();
 
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [data, setdata] = useState([]);
   const { 
-        token, 
         login, 
         currentUser, 
         setisAlertOpen,
@@ -34,11 +25,6 @@ const Login = () => {
 
         }, [currentUser])
         
-
-  const handleClose = () => {
-    setisAlertOpen(false);
-  }
-
   const handleInputChange = (e, fieldName) => {
     const { value } = e.target;
     setdata(prevData => ({ ...prevData, [fieldName]: value }));
@@ -46,10 +32,10 @@ const Login = () => {
   };
 
 
-  const handleChange = () => {
-    setChecked(!checked);
-    //console.log(checked);
-  };
+  // const handleChange = () => {
+  //   setChecked(!checked);
+  //   //console.log(checked);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,7 +106,7 @@ const Login = () => {
           </div>
           <div className="check">
 
-            <p className="forget"><a href="#">¿Olvidaste la contraseña?</a></p>
+            {/* <p className="forget"><a href="#">¿Olvidaste la contraseña?</a></p> */}
           </div>
         </form>
         <Button className="btn btn-primary-alt" onClick={handleSubmit}>Ingresar</Button>

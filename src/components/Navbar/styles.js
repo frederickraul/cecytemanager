@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../constantes";
-
 
 export const NavProfileContent = styled.div`
     display: flex;

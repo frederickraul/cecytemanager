@@ -1,18 +1,9 @@
-import React from 'react'
 import Button from '@mui/material/Button';
-import Select from 'react-select';
-import { ButtonsContainer, Field, Input, Label, Textarea } from '../styles';
+import { ButtonsContainer, Field, Input, Label } from '../styles';
 import { ModalTitle } from '../../components/utils/CustomModal/styles';
-import { CustomImageUploading } from '../../components';
-import { CloseIcon, SaveIcon } from '../../constantes/icons';
 import AnimatedModal from '../../components/utils/CustomModal/AnimatedModal';
-import { providers } from '../../constantes';
 import { ItemH2 } from '../Inventario/styles';
-import { genders } from '../../constantes/genders';
-import { CardHR } from '../../components/Card/UserCardNew/styles';
-import { rols } from '../../constantes/rols';
 import { CotizacionError } from '../Quotation/styles';
-import { updatePassword } from 'firebase/auth';
 
 const ProfileModal = (props) => {
     const { 

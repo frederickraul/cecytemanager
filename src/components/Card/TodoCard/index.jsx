@@ -1,8 +1,5 @@
-import React from 'react'
 import { TodoCardContainer, TodoTime } from './styles'
-import {CloseButton, DeleteButton} from '../../../components'
-import { CloseIcon } from '../../../constantes/icons';
-import { Button } from '@mui/material';
+import { DeleteButton} from '../../../components'
 
 const TodoCard = ({ item: {data},item,index, handeModalOpen,handleDelete,onDragStart}) => {
     const {priority,desc,category,createdAt} = data;

@@ -1,7 +1,5 @@
-import React from 'react';
-
 import { Box } from '@mui/material';
-import { ModalContainer, ModalPaper, ModalTitle } from './styles';
+import { ModalContainer, ModalPaper } from './styles';
 
 export default function AnimatedModal(props) {
     const handleClose = () => {
