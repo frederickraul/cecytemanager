@@ -4,7 +4,7 @@
 }
 .CalendarSection {
 display: flex;  
-min-height: 100%;
+min-heighst: 100%;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }
@@ -47,4 +47,23 @@ min-height: 100%;
 li.upcommingEvents {
   list-style-image: url('../../public/clock-with-white-face.png');
   
-  }
+}
+
+.fc-daygrid-event-harness:first-child .fc-daygrid-block-event{
+   white-space: normal !important;
+  overflow: hidden !important;
+  /* text-overflow: ellipsis !important; */
+   max-height: 50px !important; 
+  
+    /* white-space: pre-wrap !important;
+    border-radius: 3px;
+    font-size: .85em;
+    font-size: var(--fc-small-font-size, .85em);
+    text-overflow: ellipsis !important;
+    max-height: 36px !important; */
+}
+
+.fc-daygrid-event-harness:first-child .fc-daygrid-dot-event .fc-event-title{
+  white-space: normal !important;
+  max-height: 50px !important;
+}

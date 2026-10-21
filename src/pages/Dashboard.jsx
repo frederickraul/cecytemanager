@@ -33,6 +33,11 @@ useEffect(() => {
   getData('events',setcurrentEvents,'start');
 }, []);
 
+useEffect(()=>{
+  console.log(currentEvents);
+},[currentEvents])
+
+
 
 
 const RenderSidebar = () => {
@@ -134,6 +139,8 @@ const RenderSidebar = () => {
         allDay: clickInfo.event.allDay,
         userName: currentUser.name,
         userId: userId,
+
+        
     };
     const response = await saveData('events',newEvent);
     newEvent.id = response;
@@ -162,6 +169,8 @@ const RenderSidebar = () => {
       userName: userName,
       userId: userId,
       color: selectedColor,
+    //   display: 'background', // 👈 Esto llena todo el recuadro del día
+    // backgroundColor: '#ff9f89' // Color de fondo personalizado
 
     };
 
@@ -238,6 +247,7 @@ const renderEventContent = (eventInfo) => {
             eventAdd={handleEventAdd}
             eventChange={handleEventUpdate}
             eventRemove={handleEventDelete}
+            
             
            />
           <EventsModal

@@ -62,6 +62,7 @@ export const StateContext = ({ children }) => {
                             userName: doc.data().userName,
                             userId: doc.data().userId,
                             color: doc.data().color,
+                            //    display: 'block', // 👈 Esto llena todo el recuadro del día
                         }));
                     break;
                     default:
@@ -159,6 +160,8 @@ export const StateContext = ({ children }) => {
     }
 
     const saveData = async (collectionName, data,to) => {
+        console.log(data);
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
         setisLoading(true);
         const collRef = collection(storage, collectionName);
         const newDoc = await addDoc(collRef, data).then(response => {
