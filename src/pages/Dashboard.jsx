@@ -17,7 +17,6 @@ const today = moment().format('YYYY-MM-DD');
 // var createdAt = moment(now).format('YYYY-MM-DD');
 
 const Dashboard = () => {
-const [currentEvents, setcurrentEvents] = useState([]);
 const { getData,saveData, updateData,deleteData,currentUser,isGod } = useAuth();
 const [INITIAL_EVENTS, setINITIAL_EVENTS] = useState([]);
 const [isModalOpen, setisModalOpen] = useState(false);
@@ -29,8 +28,7 @@ const [selectedColor, setselectedColor] = useState('#3788D8')
 const [isColorChanged, setisColorChanged] = useState(false);
 
 useEffect(() => {
-  getData('events',setINITIAL_EVENTS,'start');
-  getData('events',setcurrentEvents,'start');
+  getData('events', setINITIAL_EVENTS, 'start');
 }, []);
 
 const RenderSidebar = () => {
@@ -109,9 +107,9 @@ const RenderSidebar = () => {
     const event = INITIAL_EVENTS.find(object => {
       return object.id === id;
     });
+    if (!event) return;
     handleCloseModal();
     setselectedEvent(event);
-    console.log(event);
     const color = event.color ? event.color : '#3788D8';
     setselectedColor(color);
     setSelectedCalendarEvent(clickInfo)
@@ -145,7 +143,7 @@ const RenderSidebar = () => {
 
 
   const handleEventUpdate = (clickInfo) => {
-    if(currentUser.uid === undefined ) return;
+    if (!currentUser || currentUser.uid === undefined) return;
     const id = clickInfo.event.id;
     if(!id) return;
    const start = clickInfo.event.start.toISOString().replace(/.000Z.*$/, '');
@@ -194,10 +192,12 @@ const RenderSidebar = () => {
 
 
 const renderEventContent = (eventInfo) => {
-    <>
-      <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
-    </>
+    return (
+      <>
+        <b>{eventInfo.timeText}</b>{' '}
+        <i>{eventInfo.event.title}</i>
+      </>
+    );
 }
 
     return (
@@ -222,18 +222,21 @@ const renderEventContent = (eventInfo) => {
             }}
             initialView='dayGridMonth'
             timeZone='America/Tijuana'
+            // Evita ciclos de medición de altura en las filas del calendario.
+            height='auto'
+            contentHeight='auto'
+            handleWindowResize={false}
 
             locale={esLocale}
             editable={currentUser ? true : false}
             selectable={true}
             selectMirror={true}
             dayMaxEvents={true}
-            events={currentEvents} // alternatively, use the `events` setting to fetch from a feed
+            events={INITIAL_EVENTS} // eventos cargados desde la base de datos
             //eventBackgroundColor= '#378006'
             select={handleDateSelect}
             eventContent={renderEventContent} // custom render function
             eventClick={handleEventClick}
-            setcurrentEvents='#ff0000'
             //eventsSet={handleEvents} 
             // called after events are initialized/added/changed/removed
             /* you can update a remote database when these fire:*/
