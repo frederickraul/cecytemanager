@@ -33,13 +33,6 @@ useEffect(() => {
   getData('events',setcurrentEvents,'start');
 }, []);
 
-useEffect(()=>{
-  console.log(currentEvents);
-},[currentEvents])
-
-
-
-
 const RenderSidebar = () => {
   
       return (
